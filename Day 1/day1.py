@@ -3,8 +3,8 @@ with open('input.txt') as f:
     # ['L4', 'L3', 'R1' ...]
     data = f.read()
 
-start = [0,0]
-cur_loc = [0,0]
+start = [0, 0]
+cur_loc = [0, 0]
 facing = 0
 # dictionary for pretty printing our messages
 directions = {0: 'North', 90: 'East', 180: 'South', 270: 'West'}
@@ -22,15 +22,20 @@ for instruction in data.split(', '):
 
     # move our location that many blocks in the correct direction
     if facing == 0:
-        cur_loc[1] = cur_loc[1] - distance
+        cur_loc[1] -= distance
     elif facing == 90:
-        cur_loc[0] = cur_loc[0] + distance
+        cur_loc[0] += distance
     elif facing == 180:
-        cur_loc[1] = cur_loc[1] + distance
+        cur_loc[1] += distance
     elif facing == 270:
-        cur_loc[0] = cur_loc[0] - distance
+        cur_loc[0] -= distance
 
-    print("{}: We moved {}, {} blocks and are now at: {} a distance of {} blocks from {}".format(instruction, directions[facing], distance, cur_loc, abs(cur_loc[0]) + abs(cur_loc[1]), start))
+    print("{}: We moved {}, {} blocks and are now at: {}.".format(instruction,
+                                                                  directions[facing],
+                                                                  distance, cur_loc,
+                                                                  abs(cur_loc[0]) + abs(
+                                                                      cur_loc[1]),
+                                                                  start))
 
 total_distance = abs(cur_loc[0]) + abs(cur_loc[1])
 print("Total distance from {} to {} is: {}".format(start, cur_loc, total_distance))

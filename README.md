@@ -1,3 +1,3 @@
-# adventofcode
+# Advent of code
 
-Personal repository for advent of code questions
+Personal repository for [Advent of code](http://adventofcode.com/2016/) questions
