@@ -1,6 +1,3 @@
-
-
-
 def main(data):
     start = [0, 0]
     cur_loc = [0, 0]
@@ -29,21 +26,21 @@ def main(data):
         elif facing == 270:
             cur_loc[0] -= distance
 
-        #print("{}: We moved {}, {} blocks and are now at: {}.".format(instruction,
-                                                                      #directions[facing],
-                                                                      #distance, cur_loc,
-                                                                      #abs(cur_loc[0]) + abs(
-                                                                      #    cur_loc[1]),
-                                                                      #start))
+            # print("{}: We moved {}, {} blocks and are now at: {}.".format(instruction,
+            # directions[facing],
+            # distance, cur_loc,
+            # abs(cur_loc[0]) + abs(
+            #    cur_loc[1]),
+            # start))
 
     total_distance = abs(cur_loc[0]) + abs(cur_loc[1])
-    #print("Total distance from {} to {} is: {}".format(start, cur_loc, total_distance))
+    # print("Total distance from {} to {} is: {}".format(start, cur_loc, total_distance))
     return total_distance
+
 
 if __name__ == '__main__':
     with open('input.txt') as f:
         # read in the data and split into instructions
         # ['L4', 'L3', 'R1' ...]
         data = f.read()
-
     print(main(data))
