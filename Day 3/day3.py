@@ -1,9 +1,8 @@
 def valid(triangle):
     # triangle = [d, d, d]
+    triangle = sorted(triangle)
     if triangle[0] + triangle[1] > triangle[2]:
-        if triangle[1] + triangle[2] > triangle[0]:
-            if triangle[0] + triangle[2] > triangle[1]:
-                return True
+        return True
     else:
         return False
 
