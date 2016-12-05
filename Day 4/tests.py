@@ -1,8 +1,8 @@
 import day4
 import unittest
 
-class Day2Tests(unittest.TestCase):
 
+class Day2Tests(unittest.TestCase):
     def test_True(self):
         self.assertTrue(True)
 
@@ -37,6 +37,7 @@ class Day2Tests(unittest.TestCase):
         with open('input.txt') as f:
             data = f.readlines()
         self.assertEqual(day4.find_north_pole(data), 991)
+
 
 if __name__ == '__main__':
     unittest.main()
