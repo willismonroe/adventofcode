@@ -4,6 +4,7 @@ import string
 
 REGEX = re.compile(r'([a-z-]+?)-(\d+)\[([a-z]{5})\]')
 
+
 class Room:
     def __init__(self, data):
         self.letters, self.sector_id, self.checksum = REGEX.match(data).groups()
@@ -25,12 +26,14 @@ class Room:
                 new_string += chr(((ord(letter) - ord('a') + self.sector_id) % 26) + ord('a'))
         return new_string
 
+
 def find_north_pole(data):
     for line in data:
         room = Room(line.strip())
         name = room.translate()
         if name.startswith('north'):
             return room.sector_id
+
 
 def main(data):
     # data = ['roomcode\n', 'roomcode\n' ...]
@@ -40,6 +43,7 @@ def main(data):
         if room.validate():
             real_rooms += room.sector_id
     return real_rooms
+
 
 if __name__ == '__main__':
     data = []
