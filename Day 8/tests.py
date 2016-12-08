@@ -7,26 +7,26 @@ class Day2Tests(unittest.TestCase):
         self.assertTrue(True)
 
     def test_Day8_Example(self):
-        answer = [['#','#','#','.','.','.','.'],
-                  ['#','#','#','.','.','.','.'],
-                  ['.','.','.','.','.','.','.']]
+        answer = [['#', '#', '#', '.', '.', '.', '.'],
+                  ['#', '#', '#', '.', '.', '.', '.'],
+                  ['.', '.', '.', '.', '.', '.', '.']]
         screen = day8.Screen(7, 3)
         screen.parse_line('rect 3x2')
         self.assertTrue((screen.screen == answer).all())
 
     def test_Day8_Example_2(self):
-        answer = [['#','.','#','.','.','.','.'],
-                  ['#','#','#','.','.','.','.'],
-                  ['.','#','.','.','.','.','.']]
+        answer = [['#', '.', '#', '.', '.', '.', '.'],
+                  ['#', '#', '#', '.', '.', '.', '.'],
+                  ['.', '#', '.', '.', '.', '.', '.']]
         screen = day8.Screen(7, 3)
         screen.parse_line('rect 3x2')
         screen.parse_line('rotate column x=1 by 1')
         self.assertTrue((screen.screen == answer).all())
 
     def test_Day8_Example_3(self):
-        answer = [['.','.','.','.','#','.','#'],
-                  ['#','#','#','.','.','.','.'],
-                  ['.','#','.','.','.','.','.']]
+        answer = [['.', '.', '.', '.', '#', '.', '#'],
+                  ['#', '#', '#', '.', '.', '.', '.'],
+                  ['.', '#', '.', '.', '.', '.', '.']]
         screen = day8.Screen(7, 3)
         screen.parse_line('rect 3x2')
         screen.parse_line('rotate column x=1 by 1')
@@ -34,9 +34,9 @@ class Day2Tests(unittest.TestCase):
         self.assertTrue((screen.screen == answer).all())
 
     def test_Day8_Example_4(self):
-        answer = [['.','#','.','.','#','.','#'],
-                  ['#','.','#','.','.','.','.'],
-                  ['.','#','.','.','.','.','.']]
+        answer = [['.', '#', '.', '.', '#', '.', '#'],
+                  ['#', '.', '#', '.', '.', '.', '.'],
+                  ['.', '#', '.', '.', '.', '.', '.']]
         screen = day8.Screen(7, 3)
         screen.parse_line('rect 3x2')
         screen.parse_line('rotate column x=1 by 1')
