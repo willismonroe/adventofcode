@@ -1,27 +1,37 @@
 import re
 
-REGEX = re.compile("\((\d+x\d+)\)")
 
 
-def decompress(s):
-    m = re.search("\((\d+)x(\d+)\)", s)
-    if not m:
+def decompress(s, part2=False):
+    instr = re.search("\((\d+)x(\d+)\)", s)
+    if not instr:
         return len(s)
-    start = m.start(0)
-    slice_len = int(m.group(1))
-    times = int(m.group(2))
-    i = start + len(m.group())
-    return len(s[:start]) + len(s[i:i+slice_len]) * times + decompress(s[i+slice_len:])
+    length = int(instr.group(1))
+    times = int(instr.group(2))
+    start = instr.start() + len(instr.group())
+    count = decompress(s[start:start+length], True) if part2 else length
+    return (len(s[:instr.start()]) + times * count + decompress(s[start+length:], part2))
 
-def decompress_v2(s):
-    m = re.search("\((\d+)x(\d+)\)", s)
-    if not m:
-        return len(s)
-    start = m.start(0)
-    slice_len = int(m.group(1))
-    times = int(m.group(2))
-    i = start + len(m.group())
-    return len(s[:start]) + decompress_v2(s[i:i+slice_len]) * times + decompress_v2(s[i+slice_len:])
+
+# def decompress(s):
+#     m = re.search("\((\d+)x(\d+)\)", s)
+#     if not m:
+#         return len(s)
+#     start = m.start(0)
+#     slice_len = int(m.group(1))
+#     times = int(m.group(2))
+#     i = start + len(m.group())
+#     return len(s[:start]) + len(s[i:i+slice_len]) * times + decompress(s[i+slice_len:])
+
+# def decompress_v2(s):
+#     m = re.search("\((\d+)x(\d+)\)", s)
+#     if not m:
+#         return len(s)
+#     start = m.start(0)
+#     slice_len = int(m.group(1))
+#     times = int(m.group(2))
+#     i = start + len(m.group())
+#     return len(s[:start]) + decompress_v2(s[i:i+slice_len]) * times + decompress_v2(s[i+slice_len:])
 
 
 # Old method where I created the actual string
