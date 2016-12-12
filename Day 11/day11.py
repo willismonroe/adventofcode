@@ -3,10 +3,34 @@ import re
 REGEX = re.compile("(\w+?|\w+?-\w+?) (generator|microchip)")
 
 class Move:
-    def __init__(self, start, contents, direction):
-        self.start = start
-        self.contents = contents
+    def __init__(self, parent, floors, elevator, load, direction):
+        self.parent = parent
+        self.floors = floors
+        self.elevator = elevator
+        self.load = load
         self.direction = direction
+
+    def generate_moves(self):
+        for floor in floors:
+
+        return False
+
+    def is_valid(self):
+        valid = 0
+        for floor in self.floors:
+            generator = 0
+            for object in floor:
+                if object[1] == 'g':
+                    generator = 1
+            if generator:
+                for object in floor:
+                    if object[1] == 'm':
+                        if object[0] + 'g' not in floor:
+                            valid = 0
+                valid = 1
+            else:
+                valid = 1
+        return valid
 
 class Building:
     def __init__(self, floors):
