@@ -1,4 +1,3 @@
-import curses
 
 def is_wall(x, y, data=1352):
     # x^2 + 3x + 2xy + y + y^2
@@ -44,7 +43,7 @@ class Cell(object):
 
         return cells
 
-def solve(start, end, screen=None):
+def solve(start, end):
     start = Cell(start[0], start[1])
     end = Cell(end[0], end[1])
     visited = [start]
@@ -57,8 +56,7 @@ def solve(start, end, screen=None):
         to_check = next.copy()
         next = []
         for cell in to_check:
-            if screen:
-                pp_screen(screen, visited, highlight=cell)
+
             for neighbor in cell.neighbors():
                 if neighbor in visited:
                     continue
@@ -67,13 +65,12 @@ def solve(start, end, screen=None):
         steps += 1
         if end in next:
             part1 = steps
-        # if steps == 50:
-        #     part2 = len(visited)
+        if steps == 50:
+            part2 = len(visited)
 
-    return part2
+    return part1, part2
 
 if __name__ == '__main__':
-    screen = curses.initscr()
 
-    print(solve((1,1), (31,39), screen))
+    print(solve((1,1), (31,39)))
 
