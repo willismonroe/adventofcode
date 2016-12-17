@@ -1,39 +1,39 @@
 from hashlib import md5
+from itertools import compress
+from collections import deque
 
-class Room:
-    def __init__(self, loc, path, parent):
-        self.loc = loc
-        self.path = path
-        self.parent = parent
 
-    def neighbors(self, hash):
-        hash = md5(str.encode(hash + self.path)).hexdigest()
-        doors = []
-        for char in hash[:4]:
-            if char in ['b','c','d','e','f']:
-                doors.append(1)
-            else:
-                doors.append(0)
-        return doors
+def get_doors(data, path):
+    string = (data + ''.join(path)).encode('utf-8')
+    return (int(x, 16) > 10 for x in md5(string).hexdigest()[:4])
 
 def solve(data):
-
-    loc = (0,0)
+    start = (0,0)
     end = (3,3)
-    path = ''
 
-    current = Room(loc, path, None)
-    visited = [current]
-    next = visited
-    while loc not end:
-        loc = current.loc
-        to_check = next.copy()
-        next = []
-        for cell in to_check:
+    moves = {
+        'U': lambda x, y: (x, y - 1),
+        'D': lambda x, y: (x, y + 1),
+        'L': lambda x, y: (x - 1, y),
+        'R': lambda x, y: (x + 1, y)
+    }
 
+    queue = deque([(start, [start], [])])
+    while queue:
+        (x, y), path, dirs = queue.popleft()
+        for dir in compress('UDLR', get_doors(data, dirs)):
+            next = moves[dir](x, y)
+            nx, ny = next
+            if not (0 <= nx < 4 and 0 <= ny < 4):
+                continue
+            elif next == end:
+                yield dirs + [dir]
+            else:
+                queue.append((next, path + [next], dirs + [dir]))
 
 
 if __name__ == '__main__':
     data = 'gdjjyniy'
 
-    print(solve(data))
+    paths = list(solve(data))
+    print(''.join(paths[0]), len(paths[-1]))
