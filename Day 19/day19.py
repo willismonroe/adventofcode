@@ -38,8 +38,18 @@ def solve_v2(data):
         left.append(right.pop())
     return left[0] or right[0]
 
+def f(x):
+    # this solves where x is not a power of 3, sort of
+    a = math.floor(math.log(x, 3))
+    b = x - 3**a
+    c = math.floor(math.log(b, 3))
+    d = b - 3**c
+    return d
+
+
 if __name__ == '__main__':
     data = 3005290
     data = 15
 
     print(solve_v2(data))
+
