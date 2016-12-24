@@ -1,5 +1,7 @@
 import heapq
 
+#http://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
+
 class Cell(object):
     def __init__(self, x, y, reachable):
         self.reachable = reachable
