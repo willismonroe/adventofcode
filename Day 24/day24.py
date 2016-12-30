@@ -1,4 +1,5 @@
 import heapq
+from itertools import permutations
 
 # http://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
 
@@ -128,16 +129,23 @@ def solve(data):
             if l.isdigit():
                 goals.append([l, (x, y)])
     goals = sorted(goals)
-    count = 0
-    for i, goal in enumerate(goals[:-1]):
-        start = (goal[1][0], goal[1][1])
-        end = (goals[i+1][1][0], goals[i+1][1][1])
-        astar = AStar(data)
-        astar.init_cells(start, end)
-        tmp_count = astar.process()
-        count += tmp_count
-        print("Steps from {}x{} to {}x{}: {}".format(start[0], start[1], end[0], end[1], tmp_count))
-    return count
+    zero = goals[0]
+    goals = goals[1:]
+    perms = [[zero] + list(perm) for perm in permutations(goals)]
+    counts = [9999]
+    for n, perm in enumerate(perms):
+        print(len(perms)-n)
+        count = 0
+        for i, goal in enumerate(perm[:-1]):
+            start = (goal[1][0], goal[1][1])
+            end = (perm[i+1][1][0], perm[i+1][1][1])
+            astar = AStar(data)
+            astar.init_cells(start, end)
+            tmp_count = astar.process()
+            count += tmp_count
+            #print("Steps from {}x{} to {}x{}: {}".format(start[0], start[1], end[0], end[1], tmp_count))
+        counts.append(count)
+    return min(counts)
 
 
 if __name__ == '__main__':
