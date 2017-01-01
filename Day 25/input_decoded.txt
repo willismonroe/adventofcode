@@ -1,0 +1,32 @@
+cpy a d     //      d = a
+cpy 9 c     //      c = 9
+cpy 282 b   // A:   b = 282
+inc d       // B:   d++
+dec b       //      b--
+jnz b -2    //      if b != 0: goto B
+dec c       //      c--
+jnz c -5    //      if c != 0: goto A
+            //      d = a + (9 * 282)
+cpy d a     // C:   a = d
+jnz 0 0     // D:   NOOP
+cpy a b     //      b = a
+cpy 0 a     //      a = 0
+cpy 2 c     // E:   c = 2
+jnz b 2     // F:   if b != 0: goto G       if b == 0: goto H
+jnz 1 6     //      else: goto H
+dec b       // G:   b--
+dec c       //      c--
+jnz c -4    //      if c != 0: goto F
+inc a       //      else: a++
+jnz 1 -7    //      goto E
+cpy 2 b     // H:   b = 2
+jnz c 2     // I:   if c != 0: goto J       if c == 0: goto K
+jnz 1 4     //      else: goto K
+dec b       // J:   b--
+dec c       //      c--
+jnz 1 -4    //      goto I
+jnz 0 0     // K:   NOOP
+
+out b       //      print b
+jnz a -19   //      if a != 0: goto D
+jnz 1 -21   //      else: goto C

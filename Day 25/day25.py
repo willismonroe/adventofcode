@@ -8,6 +8,8 @@ class Assembunny:
         self.end = 0
         self.count = 0
         self.limit = limit
+        self.instructions = 0
+        self.output = []
 
     def cpy(self, x, y):
         if x not in self.registers.keys():
@@ -67,7 +69,8 @@ class Assembunny:
             value = self.registers[x]
         else:
             value = int(x)
-        print("OUT: {}".format(value))
+        #print("OUT: {}".format(value))
+        self.output.append(value)
         self.cursor += 1
 
     def run_line(self):
@@ -97,15 +100,26 @@ class Assembunny:
         print("LINE: {}.".format(' '.join(self.program[self.cursor])))
 
 
-def solve(data, registers={'a': 158, 'b': 0, 'c': 0, 'd': 0, 'e': 0}):
+def solve(data, registers={'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0}, limit=0):
     data = [line.split() for line in data]
-    computer = Assembunny(data, registers)
-    while computer.end == 0:
-        computer.run_line()
-    return computer.registers['a']
+    for a in range(200):
+        limit = 40000
+        registers['a'] = a
+        computer = Assembunny(data, registers, limit)
+        while computer.end == 0:
+            if computer.instructions < computer.limit:
+                computer.instructions += 1
+                computer.run_line()
+            else:
+                break
+        if computer.output[:8] == [0,1,0,1,0,1,0,1]:
+            break
+        else:
+            print("a: {}, output: {}".format(a, computer.output[:8]))
+    return a
 
 if __name__ == '__main__':
     with open('input.txt') as f:
         data = f.read().splitlines()
 
-    print(solve(data))
+    print(solve(data, limit=40000))
