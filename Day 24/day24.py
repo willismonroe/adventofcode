@@ -1,6 +1,7 @@
 import heapq
+from itertools import permutations
 
-#http://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
+# http://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
 
 class Cell(object):
     def __init__(self, x, y, reachable):
@@ -11,6 +12,9 @@ class Cell(object):
         self.g = 0
         self.f = 0
         self.h = 0
+
+    def __lt__(self, other):
+        return self.g < other.g
 
 class AStar(object):
     def __init__(self, grid):
@@ -24,11 +28,16 @@ class AStar(object):
         self.end = (0, 0)
         self.start = (0, 0)
 
-    def load_cells(self):
+    def init_cells(self, start, end):
         for x in range(self.grid_width):
             for y in range(self.grid_height):
-                cell = Cell(x, y, self.grid[x][y] != '#')
-                self.cells.append(cell)
+                if self.grid[y][x] == '#':
+                    reachable = False
+                else:
+                    reachable = True
+                self.cells.append(Cell(x, y, reachable))
+        self.start = self.get_cell(start[0], start[1])
+        self.end = self.get_cell(end[0], end[1])
 
     def get_heuristic(self, cell):
         return 10 * (abs(cell.x - self.end.x) + abs(cell.y - self.end.y))
@@ -37,6 +46,13 @@ class AStar(object):
         return self.cells[x * self.grid_height + y]
 
     def get_adjacent_cells(self, cell):
+        """
+        Returns adjacent cells to a cell. Clockwise starting
+        from the one on the right.
+
+        @param cell get adjacent cells for this cell
+        @returns adjacent cells list
+        """
         cells = []
         if cell.x < self.grid_width - 1:
             cells.append(self.get_cell(cell.x + 1, cell.y))
@@ -52,31 +68,58 @@ class AStar(object):
         cell = self.end
         while cell.parent is not self.start:
             cell = cell.parent
-            print("Path: cell: {},{}".format(cell.x, cell.y))
+            print('path: cell: {},{}'.format(cell.x, cell.y))
+
+    def count_path(self):
+        cell = self.end
+        count = 0
+        while cell.parent is not self.start:
+            cell = cell.parent
+            count += 1
+        return count
 
     def update_cell(self, adj, cell):
+        """
+        Update adjacent cell
+
+        @param adj adjacent cell to current cell
+        @param cell current cell being processed
+        """
         adj.g = cell.g + 10
         adj.h = self.get_heuristic(adj)
         adj.parent = cell
         adj.f = adj.h + adj.g
 
     def process(self):
+        # add starting cell to open heap queue
         heapq.heappush(self.opened, (self.start.f, self.start))
+        count = 0
         while len(self.opened):
+            #print(self.opened)
+            # pop cell from heap queue
             f, cell = heapq.heappop(self.opened)
+            # add cell to closed list so we don't process it twice
             self.closed.add(cell)
+            # if ending cell, display found path
             if cell is self.end:
-                self.display_path()
+                #self.display_path()
+                count += self.count_path()
                 break
+            # get adjacent cells for cell
             adj_cells = self.get_adjacent_cells(cell)
             for adj_cell in adj_cells:
                 if adj_cell.reachable and adj_cell not in self.closed:
                     if (adj_cell.f, adj_cell) in self.opened:
+                        # if adj cell in open list, check if current path is
+                        # better than the one previously found for this adj
+                        # cell.
                         if adj_cell.g > cell.g + 10:
                             self.update_cell(adj_cell, cell)
                     else:
                         self.update_cell(adj_cell, cell)
+                        # add adj cell to open list
                         heapq.heappush(self.opened, (adj_cell.f, adj_cell))
+        return count
 
 
 def solve(data):
@@ -85,9 +128,24 @@ def solve(data):
         for x, l in enumerate(line):
             if l.isdigit():
                 goals.append([l, (x, y)])
-    astar = AStar(data)
-    astar.load_cells()
-    for goal in sorted(goals):
+    goals = sorted(goals)
+    zero = goals[0]
+    goals = goals[1:]
+    perms = [[zero] + list(perm) for perm in permutations(goals)]
+    counts = [9999]
+    for n, perm in enumerate(perms):
+        print(len(perms)-n)
+        count = 0
+        for i, goal in enumerate(perm[:-1]):
+            start = (goal[1][0], goal[1][1])
+            end = (perm[i+1][1][0], perm[i+1][1][1])
+            astar = AStar(data)
+            astar.init_cells(start, end)
+            tmp_count = astar.process()
+            count += tmp_count
+            #print("Steps from {}x{} to {}x{}: {}".format(start[0], start[1], end[0], end[1], tmp_count))
+        counts.append(count)
+    return min(counts)
 
 
 if __name__ == '__main__':
