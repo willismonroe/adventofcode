@@ -12,7 +12,8 @@ def main():
 def solve(input):
     count = 0
     for line in input:
-        perms = [''.join(p) for word in line.split() for p in set(permutations(word))]
+        # perms = [''.join(p) for word in line.split() for p in set(permutations(word))]
+        perms = [''.join(sorted(word)) for word in line.split()]
         if len(perms) == len(set(perms)):
             count += 1
     return count
