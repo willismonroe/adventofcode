@@ -22,5 +22,6 @@ def solve(input):
 
     return count
 
+
 if __name__ == "__main__":
     main()

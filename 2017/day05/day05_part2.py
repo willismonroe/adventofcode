@@ -9,7 +9,6 @@ def solve(input):
     count = 0
     index = 0
 
-    # 0 3 0 1 -3
     while 1:
         try:
             jump = input[index]
@@ -24,6 +23,7 @@ def solve(input):
             break
 
     return count
+
 
 if __name__ == "__main__":
     main()
