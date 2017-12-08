@@ -37,7 +37,7 @@ def solve(input):
         if operators[conditional_operator](registers[conditional_register], compare_number):
             registers[register] = operators[instruction](registers[register], number)
 
-    return registers[max(registers, key=registers.get)]
+    return max(registers.values())
 
 
 if __name__ == '__main__':
