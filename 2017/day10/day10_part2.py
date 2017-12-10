@@ -13,19 +13,16 @@ def solve(input, l=list(range(256))):
     input = list(map(ord, input)) + list(map(int, "17,31,73,47,23".split(',')))
     skip = 0
     pos = 0
+    inc = lambda x, d: (x + d) % len(l)
     for _ in range(64):
         for length in input:
             # reverse the slice
-            to_reverse = []
-            for i in range(length):
-                cur = (pos + i) % len(l)
-                to_reverse.append(l[cur])
-            to_reverse.reverse()
-            for i in range(length):
-                cur = (pos + i) % len(l)
-                l[cur] = to_reverse[i]
+            indexes = [inc(pos, i) for i in range(length)]
+            values = reversed([l[i] for i in indexes])
+            for i, v in zip(indexes, values):
+                l[i] = v
             # move forward
-            pos = (pos + length + skip) % len(l)
+            pos += length + skip
             # increment skip
             skip += 1
     sparse_hash = [l[i:i + 16] for i in range(0, len(l), 16)]
@@ -34,11 +31,7 @@ def solve(input, l=list(range(256))):
         h = hash[0]
         for i in hash[1:]:
             h = h ^ i
-        h = hex(h)[2:]
-        if len(h) == 1:
-            dense_hash += '0' + h
-        else:
-            dense_hash += h
+        dense_hash += f'{h:02x}'
 
     return dense_hash
 
