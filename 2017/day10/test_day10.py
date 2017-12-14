@@ -16,13 +16,13 @@ def test_part1():
 
 def test_part2_example():
     input = ""
-    assert day10_part2.solve(input) == "a2582a3a0e66e6e86e3812dcb672a272"
+    assert day10_part2.solve(input, l=list(range(256))) == "a2582a3a0e66e6e86e3812dcb672a272"
     input = "AoC 2017"
-    assert day10_part2.solve(input) == "33efeb34ea91902bb2f59c9920caa6cd"
+    assert day10_part2.solve(input, l=list(range(256))) == "33efeb34ea91902bb2f59c9920caa6cd"
     input = "1,2,3"
-    assert day10_part2.solve(input) == "3efbe78a8d82f29979031a4aa0b16a9d"
+    assert day10_part2.solve(input, l=list(range(256))) == "3efbe78a8d82f29979031a4aa0b16a9d"
     input = "1,2,4"
-    assert day10_part2.solve(input) == "63960835bcdc130f0b66d7ff4f6a5a8e"
+    assert day10_part2.solve(input, l=list(range(256))) == "63960835bcdc130f0b66d7ff4f6a5a8e"
 
 def test_part2():
     os.chdir(os.path.dirname(__file__))
