@@ -1,15 +1,14 @@
 const fs = require("fs");
 
-const input = fs
+const aocInput = fs
   .readFileSync(__dirname + "/input.txt")
   .toString()
   .split("\n")
   .map(s => s.replace(/\r$/, ""))
   .filter(s => s.length > 0);
 
-let start = 0;
-
 function partA(input) {
+  let start = 0;
   input.forEach(item => {
     let operand = item.slice(0, 1);
     let number = parseInt(item.slice(1));
@@ -25,11 +24,11 @@ function partA(input) {
 
 function partB(input) {
   let visited = [0];
-  start = 0;
+  let start = 0;
   let dup = 0;
 
   while (dup == 0) {
-    input.forEach(item => {
+    for (let item of input) {
       let operand = item.slice(0, 1);
       let number = parseInt(item.slice(1));
       if (operand === "+") {
@@ -37,18 +36,22 @@ function partB(input) {
       } else {
         start = start - number;
       }
-      if (visited.indexOf(start) > 0) {
+      if (visited.indexOf(start) > -1) {
         dup = start;
+        return start;
       }
       visited.push(start);
-    });
+    }
   }
-  return start;
 }
 
 function solve() {
-  console.log(`Part A: ${partA(input)}`);
-  console.log(`Part B: ${partB(input)}`);
+  console.log(`Part A: ${partA(aocInput)}`);
+  console.log(`Part B: ${partB(aocInput)}`);
 }
 
-solve();
+if (require.main === module) {
+  solve();
+}
+
+module.exports = { partA: partA, partB: partB };
