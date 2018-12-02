@@ -21,17 +21,23 @@ test("Day 02 Part B test", () => {
   ).toBe("fgij");
 });
 
-const aocInput = fs
-  .readFileSync(__dirname + "/input.txt")
-  .toString()
-  .split("\n")
-  .map(s => s.replace(/\r$/, ""))
-  .filter(s => s.length > 0);
 
-test("Day 02 Part A", () => {
-  expect(solve.partA(aocInput)).toBe(6175);
-});
+describe("Testing answers", () => {
+  let aocInput;
+  
+  beforeAll(() => {
+    aocInput = fs
+      .readFileSync(__dirname + "/input.txt")
+      .toString()
+      .split("\n")
+      .map(s => s.replace(/\r$/, ""))
+      .filter(s => s.length > 0);
+  });
+  test("Day 02 Part A", () => {
+    expect(solve.partA(aocInput)).toBe(6175);
+  });
 
-test("Day 02 Part B", () => {
-  expect(solve.partB(aocInput)).toBe("asgwjcmzredihqoutcylvzinx");
+  test("Day 02 Part B", () => {
+    expect(solve.partB(aocInput)).toBe("asgwjcmzredihqoutcylvzinx");
+  });
 });
