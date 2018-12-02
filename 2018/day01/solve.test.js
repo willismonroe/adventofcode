@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 const solve = require("./solve");
 
 test("Day 01 Part A tests", () => {
@@ -14,17 +14,25 @@ test("Day 01 Part B test", () => {
   expect(solve.partB(["+7", "+7", "-2", "-7", "-4"])).toBe(14);
 });
 
-const aocInput = fs
-  .readFileSync(__dirname + "/input.txt")
-  .toString()
-  .split("\n")
-  .map(s => s.replace(/\r$/, ""))
-  .filter(s => s.length > 0);
 
-test("Day 01 Part A", () => {
-  expect(solve.partA(aocInput)).toBe(479);
-});
 
-test("Day 01 Part B", () => {
-  expect(solve.partB(aocInput)).toBe(66105);
+describe("Testing answers", () => {
+  let aocInput;
+
+  beforeAll(() => {
+    aocInput = fs
+      .readFileSync(__dirname + "/input.txt")
+      .toString()
+      .split("\n")
+      .map(s => s.replace(/\r$/, ""))
+      .filter(s => s.length > 0);
+  });
+
+  test("Day 01 Part A", () => {
+    expect(solve.partA(aocInput)).toBe(479);
+  });
+
+  test("Day 01 Part B", () => {
+    expect(solve.partB(aocInput)).toBe(66105);
+  });
 });
