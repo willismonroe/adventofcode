@@ -8,39 +8,20 @@ const aocInput = fs
   .filter(s => s.length > 0);
 
 function partA(input) {
-  let start = 0;
-  input.forEach(item => {
-    let operand = item.slice(0, 1);
-    let number = parseInt(item.slice(1));
-    if (operand === "+") {
-      start = start + number;
-    } else {
-      start = start - number;
-    }
-  });
-
-  return start;
+  return input.reduce((acc, change) => acc + Number(change), 0);
 }
 
 function partB(input) {
-  let visited = [0];
   let start = 0;
-  let dup = 0;
+  let seen = new Set();
 
-  while (dup == 0) {
+  while (true) {
     for (let item of input) {
-      let operand = item.slice(0, 1);
-      let number = parseInt(item.slice(1));
-      if (operand === "+") {
-        start = start + number;
-      } else {
-        start = start - number;
-      }
-      if (visited.indexOf(start) > -1) {
-        dup = start;
+      seen.add(start);
+      start += Number(item);
+      if (seen.has(start)) {
         return start;
       }
-      visited.push(start);
     }
   }
 }
