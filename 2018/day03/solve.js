@@ -21,7 +21,7 @@ function enumerate(line) {
   let claims = [];
   for (let x = 0; x < claim.hsize; x++) {
     for (let y = 0; y < claim.vsize; y++) {
-      claims.push(`${claim}-${x + claim.hloc}x${y + claim.vloc}`);
+      claims.push(`${x + claim.hloc}x${y + claim.vloc}`);
     }
   }
   return claims;
@@ -33,7 +33,6 @@ function partA(input) {
   let seen = new Set();
   input.forEach(line => {
     enumerate(line).forEach(item => {
-      item = item.split('-')[1];
       if (!seen.has(item)) {
         if (claims.has(item)) {
           dups += 1;
@@ -48,10 +47,34 @@ function partA(input) {
 }
 
 function partB(input) {
-  let claims = new Map();
+  let fabric = new Object();
   input.forEach(line => {
+    let claim = Number(line.split("@")[0].slice(1));
+    fabric[claim] = { number: claim, claims: [], overlap: false };
     enumerate(line).forEach(item => {
-     claims[item] = claims[item] ? claims[item]++ : (claims[letter] = 1);
+      fabric[claim].claims.push(item);
+    });
+  });
+  for (let claim1 in fabric) {
+    if (fabric[claim1].overlap === false) {
+      for (let claim2 in fabric) {
+        if (claim1 != claim2) {
+          let setClaim1 = new Set(fabric[claim1].claims);
+          let setClaim2 = new Set(fabric[claim2].claims);
+          let intersect = new Set([...setClaim1].filter(x => setClaim2.has(x)));
+          if (Array.from(intersect).length > 0) {
+            fabric[claim1].overlap = true;
+            fabric[claim2].overlap = true;
+          }
+        }
+      }
+    }
+  }
+  for (let claim in fabric) {
+    if (fabric[claim].overlap === false) {
+      return claim;
+    }
+  }
 }
 
 function solve() {
