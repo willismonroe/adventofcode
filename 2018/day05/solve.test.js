@@ -6,6 +6,7 @@ const day_num = "05";
 const test_input = ["dabAcCaCBAcCcaDA"];
 
 test(`Day ${day_num} Part A tests`, () => {
+  debugger;
   expect(solve.partA(test_input)).toBe(10);
 });
 

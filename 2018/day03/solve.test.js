@@ -1,7 +1,7 @@
 const fs = require("fs");
 const solve = require("./solve");
 
-const day_num = "";
+const day_num = "03";
 
 test(`Day ${day_num} Part A tests`, () => {
   expect(solve.partA(["#1 @ 1,3: 4x4", "#2 @ 3,1: 4x4", "#3 @ 5,5: 2x2"])).toBe(
