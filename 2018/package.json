@@ -17,6 +17,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "chalk": "^2.4.1",
+    "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
