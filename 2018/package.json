@@ -14,8 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "github:willismonroe/adventofcode",
-  }
+    "url": "github:willismonroe/adventofcode"
+  },
   "author": "Willis Monroe",
   "license": "ISC",
   "dependencies": {
