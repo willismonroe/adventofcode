@@ -8,7 +8,7 @@ const input = fs
   .filter(s => s.length > 0);
 
 function paired(a, b) {
-  return Math.abs(a.charCodeAt(0) - b.charCodeAt(0)) === 32;
+  return (a.charCodeAt(0) ^ b.charCodeAt(0)) === 32;
 }
 
 function react(input) {
@@ -34,6 +34,7 @@ function partA(input) {
 
 function partB(input) {
   input = input[0].split("");
+  input = react(input);
   let alpha = {};
   for (let key of "abcdefghijklmnopqrstuvwxyz".split("")) {
     alpha[key] = 0;
