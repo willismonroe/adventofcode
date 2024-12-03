@@ -10,7 +10,7 @@ example_input = """3   4
 3   3"""
 
 
-def part1(puzzle_input):
+def part1(puzzle_input: str) -> int:
     list_a = sorted(
         [int(line.split("  ")[0]) for line in puzzle_input.splitlines()]
     )
@@ -23,7 +23,7 @@ def part1(puzzle_input):
     return dis
 
 
-def part2(puzzle_input):
+def part2(puzzle_input: str) -> int:
     list_a = sorted(
         [int(line.split("  ")[0]) for line in puzzle_input.splitlines()]
     )

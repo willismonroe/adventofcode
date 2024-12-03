@@ -8,14 +8,14 @@ example_input = """xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8
 example_input2 = """xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"""  # noqa
 
 
-def part1(puzzle_input):
+def part1(puzzle_input: str) -> int:
     total = 0
     for match in re.findall(r"mul\(\d{1,3},\d{1,3}\)", puzzle_input):
         total += int(match.split(",")[0][4:]) * int(match.split(",")[1][:-1])
     return total
 
 
-def part2(puzzle_input):
+def part2(puzzle_input: str) -> int:
     total = 0
     do = True
     for match in re.findall(

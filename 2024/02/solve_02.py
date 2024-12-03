@@ -10,7 +10,7 @@ example_input = """7 6 4 2 1
 1 3 6 7 9"""
 
 
-def part1(puzzle_input):
+def part1(puzzle_input: str) -> int:
     levels = [
         [int(num) for num in line.split()]
         for line in puzzle_input.splitlines()
@@ -39,7 +39,7 @@ def part1(puzzle_input):
     return num_safe
 
 
-def test_safety(level):
+def test_safety(level: list[int]) -> bool:
     safe = True
     diff = 0
     for i, (a, b) in enumerate(zip(level[:-1], level[1:])):
@@ -60,18 +60,18 @@ def test_safety(level):
     return safe
 
 
-def part2(puzzle_input):
-    levels = [
+def part2(puzzle_input: str) -> int:
+    levels: list[list[int]] = [
         [int(num) for num in line.split()]
         for line in puzzle_input.splitlines()
     ]
-    num_safe = 0
+    num_safe: int = 0
     for level in levels:
         if test_safety(level):
             num_safe += 1
         else:
             for i, _ in enumerate(level):
-                if test_safety(level[0:i] + level[i+1:]):
+                if test_safety(level[0:i] + level[i + 1:]):
                     num_safe += 1
                     break
 
