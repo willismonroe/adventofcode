@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for day03/solve.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">day03</a> solve.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>31/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.91% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>30/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1386x</span>
+<span class="cline-any cline-yes">1386x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">26312x</span>
+<span class="cline-any cline-yes">509735x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">356370x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-yes">26312x</span>
+<span class="cline-any cline-yes">509735x</span>
+<span class="cline-any cline-yes">153365x</span>
+<span class="cline-any cline-yes">153365x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">509735x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1388x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require("fs");
+&nbsp;
+const input = fs
+  .readFileSync(__dirname + "/input.txt")
+  .toString()
+  .split("\n")
+  .map(s =&gt; s.replace(/\r$/, ""))
+  .filter(s =&gt; s.length &gt; 0);
+&nbsp;
+// #3 @ 5,5: 2x2
+&nbsp;
+function partA(input) {
+  let fabric = new Object();
+&nbsp;
+  for (const line of input) {
+    let [id, at, start, size] = line.split(" ");
+    let [xStart, yStart] = start
+      .slice(0, -1)
+      .split(",")
+      .map(Number);
+    let [width, height] = size.split("x").map(Number);
+    for (let x = xStart; x &lt; xStart + width; x++) {
+      for (let y = yStart; y &lt; yStart + height; y++) {
+        fabric[`${x}x${y}`] = (fabric[`${x}x${y}`] || 0) + 1;
+      }
+    }
+  }
+  return Object.values(fabric).filter(v =&gt; v &gt; 1).length;
+}
+&nbsp;
+function partB(input) {
+  let fabric = new Object();
+  let claims = new Object();
+&nbsp;
+  for (const line of input) {
+    let [id, at, start, size] = line.split(" ");
+    let [xStart, yStart] = start
+      .slice(0, -1)
+      .split(",")
+      .map(Number);
+    let [width, height] = size.split("x").map(Number);
+    claims[id] = true;
+    for (let x = xStart; x &lt; xStart + width; x++) {
+      for (let y = yStart; y &lt; yStart + height; y++) {
+        if (fabric[`${x}x${y}`]) {
+          claims[fabric[`${x}x${y}`]] = false;
+          claims[id] = false;
+        }
+        fabric[`${x}x${y}`] = id;
+      }
+    }
+  }
+  return Number(
+    Object.entries(claims)
+      .filter(v =&gt; v[1])
+      .toString()
+      .split(",")[0]
+      .slice(1)
+  );
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >solve(</span>) {
+<span class="cstat-no" title="statement not covered" >  console.log(`Part A: ${partA(input)}`);</span>
+<span class="cstat-no" title="statement not covered" >  console.log(`Part B: ${partB(input)}`);</span>
+}
+&nbsp;
+<span class="missing-if-branch" title="if path not taken" >I</span>if (require.main === module) {
+<span class="cstat-no" title="statement not covered" >  solve();</span>
+}
+&nbsp;
+module.exports = { partA: partA, partB: partB };
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Dec 05 2018 14:16:57 GMT-0800 (Pacific Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
