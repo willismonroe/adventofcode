@@ -13,18 +13,18 @@ PUZZLE_DIR = pathlib.Path(__file__).parent
 example_input = \"\"\"\"\"\"
 
 
-def part1(puzzle_input):
+def part1(puzzle_input: str) -> int:
     return True
 
 
-def part2(puzzle_input):
+def part2(puzzle_input: str) -> int:
     return True
 
 
 if __name__ == "__main__":
     with open(PUZZLE_DIR / "puzzle_input.txt") as f:
         puzzle_input = f.read()
-    # input = example_input
+    # puzzle_input = example_input
     print(f"Part 1: {part1(puzzle_input)}")
     print(f"Part 2: {part2(puzzle_input)}")
 """
@@ -47,12 +47,12 @@ def puzzle_input():
     return puzzle_input
 
 
-def test_part1(puzzle_input):
+def test_part1(puzzle_input: str):
     assert part1(example_input) == 0
     # assert part1(puzzle_input) == 0
 
 
-def test_part2(puzzle_input):
+def test_part2(puzzle_input: str):
     assert part2(example_input) == 0
     # assert part2(puzzle_input) == 0
 """
