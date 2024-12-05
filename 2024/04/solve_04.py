@@ -41,7 +41,22 @@ def part1(puzzle_input: str) -> int:
 
 def part2(puzzle_input: str) -> int:
     grid = puzzle_input.splitlines()
-    return True
+    x_mas = 0
+    for i in range(1, len(grid) - 1):
+        for j in range(1, len(grid[i]) - 1):
+            if grid[i][j] == "A":
+                if set((grid[i - 1][j - 1], grid[i + 1][j + 1])) == set(
+                    ("M", "S")
+                ) and set(
+                    (
+                        grid[i - 1][j + 1],
+                        grid[i + 1][j - 1],
+                    )
+                ) == set(
+                    ("S", "M")
+                ):
+                    x_mas += 1
+    return x_mas
 
 
 if __name__ == "__main__":
