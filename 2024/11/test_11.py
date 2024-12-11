@@ -20,5 +20,5 @@ def test_part1(puzzle_input: str):
 
 
 def test_part2(puzzle_input: str):
-    assert part2(example_input) == 0
-    # assert part2(puzzle_input) == 0
+    assert part2(example_input) == 65601038650482
+    assert part2(puzzle_input) == 235571309320764
